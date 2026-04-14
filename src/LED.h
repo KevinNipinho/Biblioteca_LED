@@ -3,13 +3,20 @@
 
 #include <Arduino.h>
 
-
+/**
+ * @class Led
+ * @brief Classe para controle náo bloqueante de um LED.
+ * Permite ligar, desligar, ligar por tempo determindo,
+ * piscar continuamente e piscar por quantidade definida.
+ *
+ * @note O metódo update() deve ser chamado continuamente  dentro do loop().
+ */
 class Led
 {
 
 private:
     uint8_t pino;
-    bool estado; 
+    bool estado;
     bool desligarPorTempo;
     uint32_t desligarNoMomento = false;
 
@@ -20,30 +27,87 @@ private:
 
     bool Reset;
 
+    /**
+     * @brief Processa a lógica de piscada do LED.
+     */
     void funcaoPiscar();
+
+    /**
+     * @brief Processa a lógica de RESET do programa.
+     */
     void funcaoReset();
+
+    /**
+     * @brief Processa o desligamento temporizado.
+     */
     void funcaoDesligamento();
 
 public:
-    Led (uint8_t pin); // Método Construtor, Deverá ter o mesmo nome da Classe 
-    
-    void ligar(); //? OK
-    void ligar(uint32_t tempoLigado_ms); //? OK
+    /**
+     * @brief Constroi um objeto Led.
+     * @param pin Número do pino digital onde o LED está conectado
+     */
+    Led(uint8_t pin);
 
-    void desligar();//? OK
-    
-    void piscar();//? OK
-    void piscar(float frequencia);//? OK
-    void piscar(float frequencia, uint16_t repeticoes);//? OK
-    
-    bool getEstado();//? OK
-    uint8_t getPino();//? OK
+    /**
+     * @brief liga o LED continuamente.
+     */
+    void ligar();
 
-    void setEstado(bool estado);//? OK
+    /**
+     * @brief liga o LED por um determinado tempo.
+     * @param tempoLigado_ms tempo, em milissegundos que o LED ficará ligado.
+     */
+    void ligar(uint32_t tempoLigado_ms);
 
-    void alterar();//? OK
+    /**
+     * @brief Desliga o LED e cancela os modos automáticos.
+     */
+    void desligar();
 
-    void update(); //? OK
+    /**
+     * @brief Inicia uma piscada continua em 1 Hz.
+     */
+    void piscar();
+
+    /**
+     * @brief Pisca o LED uma quantidade definida de vezes.
+     * @param frenquencia frenquência de piscada em HZ do LED.
+     */
+    void piscar(float frequencia);
+
+    /**
+     * @brief Pisca o LED uma quantidade definida de vezes.
+     * @param frequencia frequência da piscada em HZ do LED.
+     * @param repeticoes quantidade total de piscadas do LED.
+     */
+    void piscar(float frequencia, uint16_t repeticoes);
+
+    /**
+     * @brief Retorna o estado atual do LED.
+     */
+    bool getEstado();
+
+    /**
+     * @brief Retorna o pino atual em que está conectado o LED.
+     */
+    uint8_t getPino();
+
+     /**
+     * @brief Define manualmente o estado do LED em ligado ou desligado.
+     * @param estado HIGH para ligado, LOW para desligado.
+     */
+    void setEstado(bool estado);
+
+    /**
+     * @brief Define o LED com o estado oposto do atual.
+     */
+    void alterar();
+
+    /**
+     * @brief Atualiza o programa e estados do LED.
+     */
+    void update();
 };
 
 #endif
