@@ -7,7 +7,7 @@ const uint8_t pinBotao = 0; // Declarado pino do botáo
 
 void setup() 
 {
-  // Não é necessário nada aqui.
+  pinMode(pinBotao, OUTPUT);
 }
 
 void loop() 
