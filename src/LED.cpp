@@ -10,7 +10,7 @@ Led::Led(uint8_t pin):
     estadoPiscar(false),
     repeticoes(0)
 {
-    pinMode(pin, OUTPUT)
+    pinMode(pin, OUTPUT);
 }
 
 void Led::ligar()
