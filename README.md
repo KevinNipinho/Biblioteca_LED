@@ -27,3 +27,10 @@ LED/
 │   ├── LED.h
 │   └── LED.cpp
 └── examples/
+```
+
+---
+
+## Authors
+
+- [@KevinNipinho](https://github.com/KevinNipinho)
